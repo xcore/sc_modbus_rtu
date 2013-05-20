@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<xpd>
+    <components>
+        <component name = "module_modbus_rtu" type = "component" buildresults_path = "module_modbus_rtu/.module_modbus_rtu.buildinfo" scope = "General Use" path = "module_modbus_rtu" metainfo_path = "module_modbus_rtu/module_modbus_rtu.metainfo" local = "false" id = "module_modbus_rtu" description = "Modbus RTU Server component">
+            <board>XA-SK-ISBUS</board>
+            <componentDependency>module_rs485</componentDependency>
+            <keyword>ModbusRTU</keyword>
+        </component>
+        <component description = "Demonstrates Modbus slave with GPIO slice card" type = "demoCode" scope = "Example" path = "app_modbus_rtu" local = "false" id = "app_modbus_rtu" name = "app_modbus_rtu">
+            <board>XA-SK-ISBUS</board>
+            <board>XA-SK-GPIO</board>
+            <componentDependency>module_rs485</componentDependency>
+            <componentDependency>module_modbus_rtu</componentDependency>
+            <componentDependency>module_i2c_master</componentDependency>
+            <keyword>ModbusRTU</keyword>
+        </component>
+    </components>
+    <dependency repo = "sc_uart">
+        <githash>85328820c8e18d6df345575ed4d888d295ee4ac3</githash>
+        <uri>https://github.com/xcore/sc_uart.git</uri>
+        <version>2.3.0rc0</version>
+    </dependency>
+    <dependency repo = "sc_i2c">
+        <githash>a72c5d2a55825aac5d1e15d60b367cdd08a827bb</githash>
+        <uri>https://github.com/xcore/sc_i2c.git</uri>
+    </dependency>
+    <description>Modbus RTU component</description>
+    <docdir>module_modbus_rtu/doc</docdir>
+    <docdir>app_modbus_rtu/doc_quickstart</docdir>
+    <location>https://github.com/xcore/sc_modbus_rtu.git</location>
+    <name>sc_modbus_rtu</name>
+    <maintainer>vinithmundhra</maintainer>
+    <release></release>
+    <release></release>
+    <vendor>XMOS</vendor>
+    <xcore_repo>sc_modbus_rtu.git</xcore_repo>
+    <xpd_version>1.0</xpd_version>
+</xpd>

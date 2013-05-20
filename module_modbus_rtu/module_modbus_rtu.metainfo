@@ -1,0 +1,148 @@
+-------------------------------------------------------------------------------
+-- Descriptive metadata
+-------------------------------------------------------------------------------
+
+componentName = "Modbus RTU"
+componentFullName = ""
+alternativeNames = {}
+componentDescription = "Offers a Modbus RTU component"
+componentVersion = "1v0"
+
+-------------------------------------------------------------------------------
+-- Parameter descriptions.
+-------------------------------------------------------------------------------
+derivedValues = {}
+
+configPoints =
+{
+  modbusRtuSlaveAddress =
+  {
+    short   = "Slave Address",
+    long    = "Modbus RTU Slave Address between 1 - 247",
+    help    = "",
+    units   = "int",
+    resourceUsageFlags = {"noeffect"},
+    min     = 1,
+    max     = 247,
+    default = 1
+  },
+  modbusRtuBaudRate =
+  {
+    short   = "Initial Baud Rate",
+    long    = "Initial baud Setting on start-up. Can be changed dynamically later.",
+    help    = "Bit time will be derived as XS1_TIMER_HZ / baud_rate;",
+    units   = "Bits Per Second",
+    type    = "int",
+    resourceUsageFlags = {"noeffect"},
+    min     = 1,
+    max     = 1000000,
+    default = 9600
+  },
+  modbusRtuParity =
+  {
+    short   = "Parity",
+    long    = "Parity",
+    help    = "",
+    type    = "string",
+    units   = "",
+    resourceUsageFlags = {"noeffect"},
+    options = {"RS485_PARITY_NONE", "RS485_PARITY_EVEN", "RS485_PARITY_ODD"},
+    default = "RS485_PARITY_EVEN"
+  },
+}
+
+ports = {
+  p_rs485_data = {
+    short   = "Data",
+    long    = "RS 485 Data Pin",
+    help    = "",
+    width   = 1
+  },
+  p_rs485_dir = {
+    short   = "Direction",
+    long    = "RS 485 Direction Pin",
+    help    = "",
+    width   = 1
+  }
+}
+
+
+channels = {
+   c_modbus = {
+      short = "Modbus RTU server channel",
+      long = "Channels between Modbus RTU server and application",
+      help = "",
+   }
+}
+
+
+function getConfigStatus()
+   local status = "Trusted Configuration"
+   local issues = {}
+   return status, issues
+end
+
+-------------------------------------------------------------------------------
+-- Source generation functions
+-------------------------------------------------------------------------------
+
+generatedCode = {
+   includes = {"modbus_rtu.h"},
+
+   globals = [[
+      rs485_interface_t rs485${swblock.id}_if = { 
+         ${swblock.ports.p_rs485_data}, 
+         ${swblock.ports.p_rs485_dir}
+      };
+
+      static void application(chanend ${swblock.chanends.c_modbus})
+      {
+         while(1)
+         {
+            select
+            {
+               case ${swblock.chanends.c_modbus} :> unsigned char cmd:
+               {
+                  unsigned short address, value;
+                  unsigned short rtnval = 0;
+
+                  c_modbus :> address;
+                  c_modbus :> value;
+
+                  switch(cmd)
+                  {
+                     case MODBUS_READ_COIL:
+                     case MODBUS_READ_DISCRETE_INPUT:
+                     case MODBUS_READ_HOLDING_REGISTER:
+                     case MODBUS_READ_INPUT_REGISTER:
+                     case MODBUS_WRITE_SINGLE_REGISTER:
+                     {
+                        c_modbus <: rtnval;
+                        break;
+                     }
+
+                     default: break;
+                  }
+                  break;
+               }
+            }
+         }
+      }
+   ]],
+
+   body = [[
+
+      modbus_rtu_server(${swblock.chanends.c_modbus}, rs485${swblock.id}_if, ${swblock.params.modbusRtuSlaveAddress}, ${swblock.params.modbusRtuBaudRate}, ${swblock.params.modbusRtuParity});
+      application(${swblock.chanends.c_modbus});
+    
+   ]]
+}
+
+api = {
+   'modbus_rtu_server',
+}
+
+files = {
+   ["module_modbus_rtu/modbus_rtu_conf_example.h"] = "src/modbus_rtu_conf.h",
+}
+

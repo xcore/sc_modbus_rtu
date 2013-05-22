@@ -128,11 +128,11 @@ static unsigned short read_coil(unsigned short address)
 
   if(led_status & (0x01 << address))
   {
-    return 0;
+    return 1;
   }
   else
   {
-    return 1;
+    return 0;
   }
 }
 
@@ -242,7 +242,7 @@ static unsigned short write_single_coil(unsigned short address,
 
   p_led :> led_status;
 
-  if(value)
+  if(led_status & (1 << address))
   {
     led_status &= ~(1 << address);
   }

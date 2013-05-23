@@ -23,7 +23,7 @@
 /*---------------------------------------------------------------------------
  typedefs
  ---------------------------------------------------------------------------*/
-/** \enum   modbus_rtu_cmd_t
+/** \enum   modbus_rtu_cmd_t_
  *  \brief  Modbus commands supported.
  *
  *  This Modbus RTU slave implmentation can service the following Modbus master
@@ -44,7 +44,7 @@ typedef enum modbus_rtu_cmd_t_
   MODBUS_WRITE_MULTIPLE_COILS   = 0x0F, /**<Modbus Write Multiple Coils */
 }modbus_rtu_cmd_t;
 
-/** \enum   modbus_rtu_device_status_t
+/** \enum   modbus_rtu_device_status_t_
  *  \brief  Device access status.
  *
  *  The user application may respond with following status when a Modbus command
@@ -59,7 +59,7 @@ typedef enum modbus_rtu_device_status_t_
   MODBUS_WRITE_ERROR      = 0,  /**<Application fails to write */
 }modbus_rtu_device_status_t;
 
-/** \enum   modbus_rtu_exception_t
+/** \enum   modbus_rtu_exception_t_
  *  \brief  Modbus exception codes
  *
  *  These codes are returned by the Modbus slave to requesting master when an
@@ -74,7 +74,7 @@ typedef enum modbus_rtu_exception_t_
   MB_EX_SLAVE_DEVICE_FAILURE = 0x04   /**< Failure at the device side. */
 } modbus_rtu_exception_t;
 
-/** \enum   modbus_rtu_diag_subfn_t
+/** \enum   modbus_rtu_diag_subfn_t_
  *  \brief  Sub function codes supported on a diagnostic command.
  *
  *  The following sub function codes are supported. These codes must accompany

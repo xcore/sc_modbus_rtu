@@ -13,16 +13,30 @@
  include files
  ---------------------------------------------------------------------------*/
 #include "mb_function.h"
-#include "mb_codes.h"
+#include "mb_proto.h"
 
 /*---------------------------------------------------------------------------
  constants
  ---------------------------------------------------------------------------*/
-// Default quantity limits
+/** \def     MODBUS_ADDRESS_START
+ *  \brief   Serviceable starting address of any device connected.
+ */
 #define MODBUS_ADDRESS_START        0x0000
+/** \def     MODBUS_ADDRESS_END
+ *  \brief   Serviceable end address of any device connected.
+ */
 #define MODBUS_ADDRESS_END          0xFFFF
+/** \def     MODBUS_QUANTITY_START
+ *  \brief   Minimum number of devices to access at a time.
+ */
 #define MODBUS_QUANTITY_START       0x0001
+/** \def     MODBUS_QUANTITY_1BIT_END
+ *  \brief   Maximum number of 1 bit devices connected.
+ */
 #define MODBUS_QUANTITY_1BIT_END    0x07D0
+/** \def     MODBUS_QUANTITY_16BIT_END
+ *  \brief   Maximum number of 16 bit devices connected.
+ */
 #define MODBUS_QUANTITY_16BIT_END   0x007D
 
 /*---------------------------------------------------------------------------
@@ -37,7 +51,7 @@
  global variables
  ---------------------------------------------------------------------------*/
 extern unsigned short comm_event_counter;
-extern mb_diag_counters_t diag_count;
+extern modbus_rtu_diag_counters_t diag_count;
 extern unsigned char listen_only_mode;
 
 /*---------------------------------------------------------------------------
@@ -48,15 +62,13 @@ extern unsigned char listen_only_mode;
  static prototypes
  ---------------------------------------------------------------------------*/
 
-/** =========================================================================
- *  check_range
- *
+/*==========================================================================*/
+/** Check whether a value falls within a given range (inclusive).
  *  \param value      value to check
  *  \param limit_lo   bottom limit
  *  \param limit_hi   top limit
  *  \return char      0 is ok; 1 is outside range
- *
- **/
+ */
 static unsigned char check_range(int value,
                                  unsigned short limit_lo,
                                  unsigned short limit_hi)
@@ -64,21 +76,19 @@ static unsigned char check_range(int value,
   return (((value < limit_lo) || (value > limit_hi)));
 }
 
-/** =========================================================================
- *  get_byte_count
- *
+/*==========================================================================*/
+/** Get number of 8-bit bytes required to fit a certain number of bits.
  *  \param qty      quantity
  *  \return char    number of bytes required
- *
- **/
+ */
 static unsigned char get_byte_count(unsigned short qty)
 {
   return (unsigned char) ((qty + 7u) / 8u);
 }
 
-/**
- *  Send commands to the top level application in order to read/write device
- *  values. This function will send:
+/*==========================================================================*/
+/** Send commands to the top level application to read/write device values.
+ *  This function will send:
  *  unsigned char: Modbus command
  *  unsigned short: Address to read/write
  *  unsigned short: Value to write (sent always. on read command, this is 0)
@@ -91,11 +101,11 @@ static unsigned char get_byte_count(unsigned short qty)
  *  \param address    Device address
  *  \param value      Value
  *  \return           Value/Status
- **/
-unsigned short access_external_device(chanend c_modbus,
-                                      unsigned char fn_code,
-                                      unsigned short address,
-                                      unsigned short value)
+ */
+static unsigned short access_external_device(chanend c_modbus,
+                                             unsigned char fn_code,
+                                             unsigned short address,
+                                             unsigned short value)
 {
   unsigned short rtnval;
   c_modbus <: fn_code;
@@ -108,10 +118,10 @@ unsigned short access_external_device(chanend c_modbus,
 /*---------------------------------------------------------------------------
  mb_read_1bit_device
  ---------------------------------------------------------------------------*/
-mb_exception_t mb_read_1bit_device(chanend c_modbus,
-                                   unsigned char msg[],
-                                   int &len,
-                                   unsigned char fn_code)
+modbus_rtu_exception_t mb_read_1bit_device(chanend c_modbus,
+                                           unsigned char msg[],
+                                           int &len,
+                                           unsigned char fn_code)
 {
   unsigned short address, end_address, quantity;
   unsigned char byte_count;
@@ -187,10 +197,10 @@ mb_exception_t mb_read_1bit_device(chanend c_modbus,
 /*---------------------------------------------------------------------------
  mb_read_16bit_device
  ---------------------------------------------------------------------------*/
-mb_exception_t mb_read_16bit_device(chanend c_modbus,
-                                    unsigned char msg[],
-                                    int &len,
-                                    unsigned char fn_code)
+modbus_rtu_exception_t mb_read_16bit_device(chanend c_modbus,
+                                            unsigned char msg[],
+                                            int &len,
+                                            unsigned char fn_code)
 {
   unsigned short address, end_address, quantity;
   unsigned char byte_count;
@@ -260,7 +270,7 @@ mb_exception_t mb_read_16bit_device(chanend c_modbus,
 /*---------------------------------------------------------------------------
  mb_write_coil
  ---------------------------------------------------------------------------*/
-mb_exception_t mb_write_coil(chanend c_modbus, unsigned char msg[])
+modbus_rtu_exception_t mb_write_coil(chanend c_modbus, unsigned char msg[])
 {
   unsigned short address, value, result;
 
@@ -297,9 +307,9 @@ mb_exception_t mb_write_coil(chanend c_modbus, unsigned char msg[])
 /*---------------------------------------------------------------------------
  mb_write_multiple_coils
  ---------------------------------------------------------------------------*/
-mb_exception_t mb_write_multiple_coils(chanend c_modbus,
-                                       unsigned char msg[],
-                                       int &len)
+modbus_rtu_exception_t mb_write_multiple_coils(chanend c_modbus,
+                                               unsigned char msg[],
+                                               int &len)
 {
   unsigned short address, end_address, quantity;
   unsigned char byte_count;
@@ -358,7 +368,7 @@ mb_exception_t mb_write_multiple_coils(chanend c_modbus,
 /*---------------------------------------------------------------------------
  mb_write_register
  ---------------------------------------------------------------------------*/
-mb_exception_t mb_write_register(chanend c_modbus, unsigned char msg[])
+modbus_rtu_exception_t mb_write_register(chanend c_modbus, unsigned char msg[])
 {
   unsigned short address, value, result;
 
@@ -394,9 +404,9 @@ mb_exception_t mb_write_register(chanend c_modbus, unsigned char msg[])
 /*---------------------------------------------------------------------------
  mb_read_exception_status
  ---------------------------------------------------------------------------*/
-mb_exception_t mb_read_exception_status(chanend c_modbus,
-                                        unsigned char msg[],
-                                        int &len)
+modbus_rtu_exception_t mb_read_exception_status(chanend c_modbus,
+                                                unsigned char msg[],
+                                                int &len)
 {
   unsigned short result;
 
@@ -413,7 +423,7 @@ mb_exception_t mb_read_exception_status(chanend c_modbus,
 /*---------------------------------------------------------------------------
  mb_diagnostic
  ---------------------------------------------------------------------------*/
-mb_exception_t mb_diagnostic(unsigned char msg[], int &len)
+modbus_rtu_exception_t mb_diagnostic(unsigned char msg[], int &len)
 {
   unsigned short sub_fn_code;
 
@@ -486,7 +496,7 @@ mb_exception_t mb_diagnostic(unsigned char msg[], int &len)
 /*---------------------------------------------------------------------------
  mb_comm_event_counter
  ---------------------------------------------------------------------------*/
-mb_exception_t mb_comm_event_counter(unsigned char msg[], int &len)
+modbus_rtu_exception_t mb_comm_event_counter(unsigned char msg[], int &len)
 {
   msg[MBRTU_DATA_OFF] = 0x00;
   msg[MBRTU_DATA_OFF + 1] = 0x00;

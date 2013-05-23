@@ -22,4 +22,3 @@
 #define MODBUS_HOLDING_REGISTER_ADDRESS_END     125
 
 #endif // __modbus_rtu_conf_h__
-

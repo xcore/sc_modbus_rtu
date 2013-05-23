@@ -1,7 +1,7 @@
-SPHINX_PROJECT_NAME=Modbus TCP Component
+SPHINX_PROJECT_NAME=Modbus RTU Component
 VERSION=1v0
-DOXYGEN_DIRS= ../../module_modbus_tcp/src
-SOURCE_INCLUDE_DIRS= ../../module_modbus_tcp/src
+DOXYGEN_DIRS= ../../module_modbus_rtu/src
+SOURCE_INCLUDE_DIRS= ../../module_modbus_rtu/src
 XDOC_DIR ?= ../../../xdoc
 include $(XDOC_DIR)/Makefile.inc
 

@@ -1,4 +1,4 @@
-Modbus TCP Component
+Modbus RTU Component
 ====================
 
 .. toctree::

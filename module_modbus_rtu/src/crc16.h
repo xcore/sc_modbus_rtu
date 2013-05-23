@@ -38,13 +38,11 @@
  ---------------------------------------------------------------------------*/
 
 /*==========================================================================*/
-/**
- *  Description
- *
- *  \param xxx    description of xxx
- *  \param yyy    description of yyy
- *  \return None
- **/
+/** Calculate 16-bit CRC
+ *  \param msg    Pointer to an unsigned char array of data
+ *  \param len    Length of data (used size of msg array)
+ *  \return       unsigned short CRC
+ */
 unsigned short crc16(REFERENCE_PARAM(unsigned char, msg), unsigned short len);
 
 #endif // __crc16_h__

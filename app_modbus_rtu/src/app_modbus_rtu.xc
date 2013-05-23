@@ -6,6 +6,23 @@
 /*===========================================================================
  Info
  ----
+ This simple demonstration uses XA-SK-ISBUS and XA-SK-GPIO Slice Cards that
+ plugs into the Slicekit Core board (XP-SKC-L2). It uses xSOFTip(s)
+ ``module_modbus_rtu`` and ``module_i2c_master`` to receive commands from a
+ Modbus Master over RS485 and service them to:
+
+ - Turn GPIO Slice Card LEDS on and off
+ - Read the room temperature via the on-board ADC
+ - Display GPIO Slice Card button presses
+
+ Here is the flow of communication:
+ Modbus Master (PC application. Eg. SimplyModbus RTU) <->
+ USB to RS485 converter                               <->
+ RS485 transceiver on the XA-SK-ISBUS slice card      <->
+ Module RS485 (part of Module Modbus RTU)             <->
+ Module Modbus RTU                                    <->
+ User (this) application which further gets data from XA-SK-GPIO based on
+ commands from Module Modbus RTU.
 
  ===========================================================================*/
 
@@ -19,26 +36,41 @@
 /*---------------------------------------------------------------------------
  constants
  ---------------------------------------------------------------------------*/
-// Timer interval to scan button events
-#define DEBOUNCE_INTERVAL     XS1_TIMER_HZ/50
-#define BUTTON_1_PRESS_VALUE  0x2
+#define DEBOUNCE_INTERVAL     XS1_TIMER_HZ/50 /**< Button scan interval. */
+#define BUTTON_1_PRESS_VALUE  0x2             /**< Button 1 press value. */
 
-#define BAUD                  9600
-#define PARITY                RS485_PARITY_EVEN
-
+#define BAUD    9600              /**< Baud rate for RS485. */
+#define PARITY  RS485_PARITY_EVEN /**< Parity for RS485. Options:
+                                       RS485_PARITY_EVEN,
+                                       RS485_PARITY_ODD or
+                                       RS485_PARITY_NONE. See RS485
+                                       documentation for further info.*/
 /*---------------------------------------------------------------------------
  ports and clocks
  ---------------------------------------------------------------------------*/
 
+/** \var     rs485_if
+ *  \brief   RS485 ports. One for 'Data' and another for 'Direction'.
+ *           See RS485 documentation for further info.
+ */
 on tile[0]: rs485_interface_t rs485_if =
 {
  XS1_PORT_1J,
  XS1_PORT_4E
 };
 
-// GPIO slice ports
+/** \var     p_i2c
+ *  \brief   I2C ports to communicate with the ADC present on the XA-SK-GPIO
+ *           slice card.
+ */
 on tile[1]: r_i2c p_i2c = {XS1_PORT_1F, XS1_PORT_1B, 1000};
+/** \var     p_led
+ *  \brief   LED ports for XA-SK-GPIO slice card.
+ */
 on tile[1]: port p_led = XS1_PORT_4A;
+/** \var     p_button
+ *  \brief   Button ports for XA-SK-GPIO slice card.
+ */
 on tile[1]: port p_button = XS1_PORT_4C;
 
 /*---------------------------------------------------------------------------
@@ -52,13 +84,20 @@ on tile[1]: port p_button = XS1_PORT_4C;
 /*---------------------------------------------------------------------------
  static variables
  ---------------------------------------------------------------------------*/
+/** \var     button_status
+ *  Button status. Two buttons present on the XA-SK-GPIO slice card. Status of
+ *  'SW1' is on Bit0, status of 'SW2' is on Bit1.
+ */
 static unsigned short button_status = 0;
 
-//Temperature to ADC look up table
-static int TEMPERATURE_LUT[][2] = { {-10, 850}, {-5, 800}, {0, 750}, {5, 700},
-                                    {10, 650}, {15, 600}, {20, 550}, {25, 500},
-                                    {30, 450}, {35, 400}, {40, 350}, {45, 300},
-                                    {50, 250}, {55, 230}, {60, 210}
+/** \var     TEMPERATURE_LUT
+ *  Look-up table for converting ADC values to integer temperature.
+ */
+static int TEMPERATURE_LUT[][2] = { {-10, 850}, {-5, 800}, {0, 750},
+                                    {5, 700},   {10, 650}, {15, 600},
+                                    {20, 550},  {25, 500}, {30, 450},
+                                    {35, 400},  {40, 350}, {45, 300},
+                                    {50, 250},  {55, 230}, {60, 210}
 };
 
 /*---------------------------------------------------------------------------
@@ -66,12 +105,10 @@ static int TEMPERATURE_LUT[][2] = { {-10, 850}, {-5, 800}, {0, 750}, {5, 700},
  ---------------------------------------------------------------------------*/
 
 /*==========================================================================*/
-/**
- *  Read temperature value from the sensor using I2C
- *
+/** Read temperature value from the sensor using I2C
  *  \param p_i2c  I2C ports that connects to the temperature sensor
  *  \return       Current recorded temperature on the sensor
- **/
+ */
 static int read_temperature(r_i2c &p_i2c)
 {
   int adc_value;
@@ -95,8 +132,7 @@ static int read_temperature(r_i2c &p_i2c)
 }
 
 /*==========================================================================*/
-/**
- *  Read coil values. LEDs on the GPIO slice are imitated as coils. In the
+/** Read coil values. LEDs on the GPIO slice are imitated as coils. In the
  *  Simply Modbus PC application: First Coil 1, Number of Coils 4
  *  Output status byte is of format:
  *  +----+----+----+----+------+------+------+------+
@@ -115,7 +151,7 @@ static int read_temperature(r_i2c &p_i2c)
  *
  *  \param address    address of coil to read
  *  \return           coil value
- **/
+ */
 static unsigned short read_coil(unsigned short address)
 {
   unsigned char led_status = 0;
@@ -137,8 +173,7 @@ static unsigned short read_coil(unsigned short address)
 }
 
 /*==========================================================================*/
-/**
- *  Read Discrete Input values. Buttons on the GPIO slice are imitated as
+/** Read Discrete Input values. Buttons on the GPIO slice are imitated as
  *  discrete inputs. In the Simply Modbus PC application: First Coil 1,
  *  Number of Coils 2. Output status byte is of format:
  *  +----+----+----+----+----+----+-----+-----+
@@ -155,7 +190,7 @@ static unsigned short read_coil(unsigned short address)
  *
  *  \param address    address of discrete input to read
  *  \return           discrete input value
- **/
+ */
 static unsigned short read_discrete_input(unsigned short address)
 {
   unsigned short rtnval = button_status;
@@ -174,8 +209,7 @@ static unsigned short read_discrete_input(unsigned short address)
 }
 
 /*==========================================================================*/
-/**
- *  Read Holding Register values. Not implemented in this app.
+/** Read Holding Register values. Not implemented in this app.
  *  All addresses return as device failures (no Holding Register at such
  *  addresses)
  *  Device failure return value for Holding register = MODBUS_READ_16BIT_ERROR
@@ -183,15 +217,14 @@ static unsigned short read_discrete_input(unsigned short address)
  *
  *  \param address    address of Holding Register to read
  *  \return           Holding Register value
- **/
+ */
 static unsigned short read_holding_register(unsigned short address)
 {
   return MODBUS_READ_16BIT_ERROR;
 }
 
 /*==========================================================================*/
-/**
- *  Read Input Register values. The temperature sensor present on the GPIO slice
+/** Read Input Register values. The temperature sensor present on the GPIO slice
  *  is imitated as an Input register. Temperature from this sensor is read using
  *  I2C. This sensor is connected to Input Register address 0 of the Modbus.
  *  All other addresses return as device failures (no Input Register at such
@@ -201,7 +234,7 @@ static unsigned short read_holding_register(unsigned short address)
  *
  *  \param address    address of Input Register to read
  *  \return           Input Register value
- **/
+ */
 static unsigned short read_input_register(unsigned short address)
 {
   if(address == 0)
@@ -215,8 +248,7 @@ static unsigned short read_input_register(unsigned short address)
 }
 
 /*==========================================================================*/
-/**
- *  Write to coils. LEDs on the GPIO slice are imitated as coils which would
+/** Write to coils. LEDs on the GPIO slice are imitated as coils which would
  *  just toggle its state (ON/OFF) on this command. In the Simply Modbus Write
  *  window:
  *  Modbus First Register 1 = LED0
@@ -229,7 +261,7 @@ static unsigned short read_input_register(unsigned short address)
  *
  *  \param address    address of coil to toggle
  *  \return           write status
- **/
+ */
 static unsigned short write_single_coil(unsigned short address,
                                         unsigned short value)
 {
@@ -256,15 +288,14 @@ static unsigned short write_single_coil(unsigned short address,
 }
 
 /*==========================================================================*/
-/**
- *  Write to Register. Not implemented in this app.
+/** Write to Register. Not implemented in this app.
  *  All addresses return as device failures (no Register at such addresses)
  *  Device failure return value for Write register = MODBUS_WRITE_ERROR
  *  (present in mb_codes.h)
  *
  *  \param address    address of Register to write to
  *  \return           write status
- **/
+ */
 static unsigned short write_single_register(unsigned short address,
                                             unsigned short value)
 {
@@ -272,18 +303,17 @@ static unsigned short write_single_register(unsigned short address,
 }
 
 /*==========================================================================*/
-/**
- *  Device Application. This task maps Modbus commands to external devices such
+/** Device Application. This task maps Modbus commands to external devices such
  *  as coils / registers. In this Demo application:
  *  Coils are mapped to LEDs on the GPIO Slice.
  *  Discrete Input are mapped to Buttons on the GPIO Slice.
  *  Holding Registers are mapped to Temperature sensor on the GPIO Slice.
- *  Input Register are not mapped.
+ *  Input Registers are not mapped.
  *
  *  \param c_modbus   channel to receive Modbus commands from the
- *                    modbus_tcp_server
+ *                    modbus_rtu_server
  *  \return           None
- **/
+ */
 static void device_application(chanend c_modbus)
 {
   int scan_button_flag = 1;
@@ -303,7 +333,7 @@ static void device_application(chanend c_modbus)
   {
     select
     {
-      // Listen to Modbus TCP events
+      // Listen to Modbus RTU events
       case c_modbus :> unsigned char cmd:
       {
         unsigned short address, value, rtnval;
@@ -315,6 +345,7 @@ static void device_application(chanend c_modbus)
         {
           case MODBUS_READ_COIL:
           {
+            // Get LED status
             rtnval = read_coil(address);
             c_modbus <: rtnval;
             break;
@@ -322,6 +353,7 @@ static void device_application(chanend c_modbus)
 
           case MODBUS_READ_DISCRETE_INPUT:
           {
+            // Get Button status
             rtnval = read_discrete_input(address);
             c_modbus <: rtnval;
             break;
@@ -329,6 +361,7 @@ static void device_application(chanend c_modbus)
 
           case MODBUS_READ_HOLDING_REGISTER:
           {
+            // Not implmented in this demo
             rtnval = read_holding_register(address);
             c_modbus <: rtnval;
             break;
@@ -336,6 +369,7 @@ static void device_application(chanend c_modbus)
 
           case MODBUS_READ_INPUT_REGISTER:
           {
+            // Get temperature
             rtnval = read_input_register(address);
             c_modbus <: rtnval;
             break;
@@ -343,6 +377,7 @@ static void device_application(chanend c_modbus)
 
           case MODBUS_WRITE_SINGLE_COIL:
           {
+            // Toggle LED states
             rtnval = write_single_coil(address, value);
             c_modbus <: rtnval;
             break;
@@ -350,6 +385,7 @@ static void device_application(chanend c_modbus)
 
           case MODBUS_WRITE_SINGLE_REGISTER:
           {
+            // Not implmented in this demo
             rtnval = write_single_register(address, value);
             c_modbus <: rtnval;
             break;
@@ -390,9 +426,12 @@ static void device_application(chanend c_modbus)
   }
 }
 
-/*---------------------------------------------------------------------------
- Main Entry Point
- ---------------------------------------------------------------------------*/
+/*==========================================================================*/
+/** Main Entry Point. Instantiates two tasks viz.:
+ *  modbus_rtu_server: The Modbus RTU server to talk to XA-SK-ISBUS slice card
+ *  device_application: The Host application to read values from XA-SK-GPIO
+ *  Slice Card.
+ */
 int main(void)
 {
   chan c_modbus;

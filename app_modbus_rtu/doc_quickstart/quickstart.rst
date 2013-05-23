@@ -1,7 +1,7 @@
 Modbus RTU Demo Quickstart Guide
 ================================
 
-This simple demonstration of xTIMEcomposer Studio functionality that uses the ``XA-SK-ISBUS`` and ``XA-SK-GPIO`` Slice Cards together with the xSOFTip ``module_modbus_rtu`` to demonstrate how the module is used to receive commands from a Modbus Master over RS485 bus and service them to:
+This simple demonstration of xTIMEcomposer Studio functionality that uses the ``XA-SK-ISBUS`` and ``XA-SK-GPIO`` Slice Cards together with the xSOFTip ``module_modbus_rtu`` and ``module_i2c_master`` to demonstrate how to receive commands from a Modbus Master over RS485 bus and service them to:
 
 - Turn GPIO Slice Card LEDs on and off
 - Read the room temperature via the on-board ADC
@@ -279,12 +279,3 @@ Next Steps
 - Review the modbus application code, in ``app_modbus_rtu``, and review the code in the modbus module itself, ``module_modbus_rtu``. Refer to the documentation for the modubus component module to review the API details and usage.
 - The ``module_modbus_rtu`` has an in-built RS485 component. It uses the ``sc_uart`` xSOFTip to receive Modbus commands over RS485 interface. Review the documentation for the ``RS485 Transceiver Component`` item in the xSOFTip Browser pane.
 - Review other industrial communications IP, including the ``CAN Bus Module`` and the ``RS485 Transceiver Component`` in the xSOFTip Browser.
-
-
-
-
-
-
-
-
-

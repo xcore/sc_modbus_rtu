@@ -1,11 +1,7 @@
-.. _modbus_tcp_api:
+.. _modbus_rtu_api:
 
 API
 ====
-
-Configuration Defines
----------------------
-
 
 Server functions
 ----------------
@@ -15,7 +11,10 @@ Server functions
 Modbus commands & Status
 ------------------------
 
-.. doxygenenum:: modbus_cmd
+.. doxygenenum:: modbus_rtu_cmd_t
 
-.. doxygenenum:: modbus_error
+.. doxygenenum:: modbus_rtu_diag_subfn_t
 
+.. doxygenenum:: modbus_rtu_device_status_t
+
+.. doxygenenum:: modbus_rtu_exception_t

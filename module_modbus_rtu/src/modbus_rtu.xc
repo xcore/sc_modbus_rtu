@@ -33,28 +33,26 @@
 /*---------------------------------------------------------------------------
  global variables
  ---------------------------------------------------------------------------*/
-unsigned short comm_event_counter = 0;
-unsigned char listen_only_mode = 0;
-mb_diag_counters_t diag_count;
+unsigned short comm_event_counter = 0;  /**< Comm event counter */
+unsigned char listen_only_mode = 0;     /**< Listen only mode */
+modbus_rtu_diag_counters_t diag_count;          /**< Diagnostic counters */
 
 /*---------------------------------------------------------------------------
  static variables
  ---------------------------------------------------------------------------*/
-static unsigned char mbrtu_slave_address;
+static unsigned char mbrtu_slave_address; /**< Defined slave address */
 
 /*---------------------------------------------------------------------------
  static prototypes
  ---------------------------------------------------------------------------*/
 
 /*==========================================================================*/
-/**
- *  Handle data from RS485 and process for Modbus commands
- *
+/** Handle data from RS485 and process for Modbus commands
  *  \param c_modbus       Modbus channel to top level application
  *  \param c_rs485_ctrl   RS485 control channel
  *  \param c_rs485_data   RS485 data channel
  *  \return None
- **/
+ */
 static void mbrtu_event_handler(chanend c_modbus,
                                 chanend c_rs485_ctrl,
                                 chanend c_rs485_data)
@@ -62,7 +60,8 @@ static void mbrtu_event_handler(chanend c_modbus,
   unsigned char mb_data[RS485_BUF_SIZE], fn_code;
   unsigned short crclohi;
   int length;
-  mb_exception_t exception;
+  modbus_rtu_exception_t exception;
+  unsigned char req_slave_address;
 
   mb_reset_diagnostic_counters();
 
@@ -94,8 +93,10 @@ static void mbrtu_event_handler(chanend c_modbus,
         diag_count.bus_msg++;
 
         // data received, check and process for modbus commands
-        if(mb_data[MBRTU_SLAVE_ADDR_OFF] != mbrtu_slave_address &&
-            mb_data[MBRTU_SLAVE_ADDR_OFF] != MBRTU_ADDRESS_BROADCAST)
+        req_slave_address = mb_data[MBRTU_SLAVE_ADDR_OFF];
+
+        if(req_slave_address != mbrtu_slave_address &&
+            req_slave_address != MBRTU_ADDRESS_BROADCAST)
 
         {
           break;
@@ -103,7 +104,7 @@ static void mbrtu_event_handler(chanend c_modbus,
 
         diag_count.server_msg++;
 
-        if(mb_data[MBRTU_SLAVE_ADDR_OFF] == MBRTU_ADDRESS_BROADCAST)
+        if(req_slave_address == MBRTU_ADDRESS_BROADCAST)
         {
           diag_count.no_response++;
         }
@@ -184,7 +185,8 @@ static void mbrtu_event_handler(chanend c_modbus,
           comm_event_counter++;
         }
 
-        if(listen_only_mode == 1)
+        if((listen_only_mode == 1) ||
+            (req_slave_address == MBRTU_ADDRESS_BROADCAST))
         {
           break;
         }
@@ -209,7 +211,7 @@ static void mbrtu_event_handler(chanend c_modbus,
 }
 
 /*---------------------------------------------------------------------------
- implementation1
+ modbus_rtu_server
  ---------------------------------------------------------------------------*/
 void modbus_rtu_server(chanend c_modbus,
                        rs485_interface_t &rs485_if,

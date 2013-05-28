@@ -35,12 +35,13 @@
  ---------------------------------------------------------------------------*/
 unsigned short comm_event_counter = 0;  /**< Comm event counter */
 unsigned char listen_only_mode = 0;     /**< Listen only mode */
-modbus_rtu_diag_counters_t diag_count;          /**< Diagnostic counters */
+modbus_rtu_diag_counters_t diag_count;  /**< Diagnostic counters */
 
 /*---------------------------------------------------------------------------
  static variables
  ---------------------------------------------------------------------------*/
 static unsigned char mbrtu_slave_address; /**< Defined slave address */
+static unsigned mbrtu_inter_frame_timeout; /**< Inter frame delay (3.5 chars) */
 
 /*---------------------------------------------------------------------------
  static prototypes
@@ -62,6 +63,8 @@ static void mbrtu_event_handler(chanend c_modbus,
   int length;
   modbus_rtu_exception_t exception;
   unsigned char req_slave_address;
+  timer t;
+  unsigned time;
 
   mb_reset_diagnostic_counters();
 
@@ -229,6 +232,8 @@ void modbus_rtu_server(chanend c_modbus,
   rs485_config.stop_bits = (parity == RS485_PARITY_NONE) ? 2 : 1;
   rs485_config.parity = parity;
   rs485_config.data_timeout = 10;
+
+  mbrtu_inter_frame_timeout = (baud > 19200) ? 1.75 : 3.5 ;
 
   par
   {

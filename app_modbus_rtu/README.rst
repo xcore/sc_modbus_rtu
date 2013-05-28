@@ -2,18 +2,18 @@ Modbus RTU Demo
 ===============
 
 :scope: Example
-:description: Demonstrates Modbus slave with GPIO slice card
+:description: Demonstrates Modbus slave with GPIO sliceCARD
 :keywords: ModbusRTU
 :boards: XA-SK-ISBUS, XA-SK-GPIO
 
 Demo Overview
 =============
 
-This simple demonstration of xTIMEcomposer Studio functionality that uses the XA-SK-ISBUS and XA-SK-GPIO Slice Cards together with the xSOFTip ``module_modbus_rtu`` and ``module_i2c_master`` to demonstrate how to receive commands from a Modbus Master over RS485 and service them to:
+This simple demonstration of xTIMEcomposer Studio functionality that uses the XA-SK-ISBUS and XA-SK-GPIO sliceCARD together with the xSOFTip ``module_modbus_rtu`` and ``module_i2c_master`` to demonstrate how to receive commands from a Modbus Master over RS485 and service them to:
 
-- Turn GPIO Slice Card LEDS on and off
+- Turn GPIO sliceCARD LEDS on and off
 - Read the room temperature via the on-board ADC
-- Display GPIO Slice Card button presses
+- Display GPIO sliceCARD button presses
 
 Software Requirements
 =====================

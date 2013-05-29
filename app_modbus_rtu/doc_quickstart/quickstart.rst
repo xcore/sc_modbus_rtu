@@ -85,7 +85,7 @@ Change to *Port Settings* tab and set:
 
    COM port setup
 
-At this point, please note the COM port number (here, COM14). Click *OK* to close the window.
+At this point, please note the COM port number (here, COM14). This will be used to set configurations in the Modbus PC application. Click *OK* to close the window.
 
 Modbus Master Emulator
 ----------------------
@@ -102,6 +102,12 @@ Import and Build the Application
 #. Open xTIMEcomposer and check that it is operating in online mode. Open the edit perspective (Window->Open Perspective->XMOS Edit).
 #. Locate the ``Modbus RTU Demo`` item in the xSOFTip pane on the bottom left of the window and drag it into the Project Explorer window in the xTIMEcomposer. This will also cause the modules on which this application depends to be imported as well.
 #. Click on the ``app_modbus_rtu`` item in the Project Explorer pane then click on the build icon (hammer) in xTIMEcomposer. Check the console window to verify that the application has built successfully.
+
+If the Demo fails to download due to some issues, please clone (or download) the following repositories and then import ``app_modbus_rtu`` into your workspace. Make sure that all required dependencies are a part of the workspace.
+
+- sc_modbus_rtu git://github.com/xcore/sc_modbus_rtu.git
+- sc_i2c git://github.com/xcore/sc_i2c.git
+- sc_uart git://github.com/xcore/sc_uart.git
 
 For help in using xTIMEcomposer, try the xTIMEcomposer tutorial, which you can find by selecting (Help->Tutorials) from the xTIMEcomposer menu.
 
@@ -132,15 +138,21 @@ This demo issues commands to read: coils, input register and discrete inputs and
 
 On your PC, open the SimplyModbus Client from (Start -> All Programs -> Simply Modbus -> Simply Modbus) and adjust to following settings:
 
-   - mode = RTU
-   - COM port = 14
-   - baud = 9600
-   - data bits = 8
-   - stop bits = 1
-   - parity = even
-   - Slave ID = 10
-
-Alternatively, click on ``RESTORE CFG`` and change to `($\\app_modbus_rtu\\simplymodbus_config\\)`. Select the `read_coil.csv` configuration file.
+   +---------------+------------+---------------------+--------------+
+   | Heading       | Value      | Heading             | Value        |
+   +===============+============+=====================+==============+
+   | **Mode**      | RTU        | **Slave ID**        | 10           |
+   +---------------+------------+---------------------+--------------+
+   | **COM Port**  | <>         | **First Register**  | 1            |
+   +---------------+------------+---------------------+--------------+
+   | **Baud**      | 9600       | **No. of Regs**     | 4            |
+   +---------------+------------+---------------------+--------------+
+   | **Data Bits** | 8          | **Function Code**   | 1            |
+   +---------------+------------+---------------------+--------------+
+   | **Stop Bits** | 1          | **Minus offset**    | 1            |
+   +---------------+------------+---------------------+--------------+
+   | **Parity**    | Even       | **Register Size**   | 1 bit coils  |
+   +---------------+------------+---------------------+--------------+
 
 .. figure:: images/main.png
    :align: center
@@ -158,7 +170,23 @@ Switch ON all LEDs using `Write Coil` command. You can issue `write` commands us
 
    SimplyModbus WRITE interface
 
-Click on ``RESTORE CFG`` (in the SimplyModbus Write interface window) and change to `($\\app_modbus_rtu\\simplymodbus_config\\)`. Select the `write_coil.csv` configuration file. This will load the WRITE_SINGLE_COIL command in the SimplyModbus write window with `First Register = 1` and `# values to write = 1`. This prepares a `Write Single Coil` command to be issued to the Modbus slave to Write a coil (LED) at address indicated in `First Register` box. Note that, First Register = 1 is address 0, First Register = 2 is address 1 and so on. In this demo, toggle the states of all four LEDs one by one by changing the `First Register` value and clicking on ``SEND``. Notice how the LED state changes on the XA-SK-GPIO sliceCARD.
+In the ``WRITE`` interface window, change to the below mentioned settings. This prepares a `Write Single Coil` command to be issued to the Modbus slave. It writes a coil (LED) at address indicated in `First Register` box. Note that, First Register = 1 is address 0, First Register = 2 is address 1 and so on. In this demo, toggle the states of all four LEDs one by one by changing the `First Register` value and clicking on ``SEND``. Notice how the LED state changes on the XA-SK-GPIO sliceCARD.
+
+   +---------------+------------+-----------------------+--------------+
+   | Heading       | Value      | Heading               | Value        |
+   +===============+============+=======================+==============+
+   | **Mode**      | RTU        | **Slave ID**          | 10           |
+   +---------------+------------+-----------------------+--------------+
+   | **COM Port**  | <>         | **First Register**    | 1, 2, 3, 4   |
+   +---------------+------------+-----------------------+--------------+
+   | **Baud**      | 9600       | **# Values to Write** | 1            |
+   +---------------+------------+-----------------------+--------------+
+   | **Data Bits** | 8          | **Function Code**     | 5            |
+   +---------------+------------+-----------------------+--------------+
+   | **Stop Bits** | 1          | **Minus offset**      | 1            |
+   +---------------+------------+-----------------------+--------------+
+   | **Parity**    | Even       | **Register Size**     | 1 bit coils  |
+   +---------------+------------+-----------------------+--------------+
 
 .. figure:: images/write_led_0123.png
    :align: center
@@ -169,7 +197,25 @@ Click on ``RESTORE CFG`` (in the SimplyModbus Write interface window) and change
 Read LED status
 ~~~~~~~~~~~~~~~
 
-Switch to SimplyModbus main window. Click on ``RESTORE CFG`` and change to `($\\app_modbus_rtu\\simplymodbus_config\\)`. Select the `read_coil.csv` configuration file. This will load the READ_COIL command in the SimplyModbus main window with `First Coil = 1` and `No. of Coils = 4`. This prepares a `Read Coil` command to be issued to the Modbus slave to read coils from addresses 0 through 3. In this demo, it reads the status of 4 GPIO LEDs on XA-SK-GPIO sliceCARD. The first LED is LED0 on the XA-SK-GPIO slice and the fourth LED is LED3 on XA-SK-GPIO slice. The result is a byte containing the status of LEDs arranged as bit positions (shown in `results` column in the SimplyModbus main window):
+Switch to SimplyModbus main window and change to below mentioned settings. This prepares a `Read Coil` command to be issued to the Modbus slave to read coils from addresses 0 through 3. In this demo, it reads the status of 4 GPIO LEDs on XA-SK-GPIO sliceCARD. The first LED is LED0 on the XA-SK-GPIO slice and the fourth LED is LED3 on XA-SK-GPIO slice.
+
+   +---------------+------------+---------------------+--------------+
+   | Heading       | Value      | Heading             | Value        |
+   +===============+============+=====================+==============+
+   | **Mode**      | RTU        | **Slave ID**        | 10           |
+   +---------------+------------+---------------------+--------------+
+   | **COM Port**  | <>         | **First Register**  | 1            |
+   +---------------+------------+---------------------+--------------+
+   | **Baud**      | 9600       | **No. of Regs**     | 4            |
+   +---------------+------------+---------------------+--------------+
+   | **Data Bits** | 8          | **Function Code**   | 1            |
+   +---------------+------------+---------------------+--------------+
+   | **Stop Bits** | 1          | **Minus offset**    | 1            |
+   +---------------+------------+---------------------+--------------+
+   | **Parity**    | Even       | **Register Size**   | 1 bit coils  |
+   +---------------+------------+---------------------+--------------+
+
+The result is a byte containing the status of LEDs arranged as bit positions (shown in `results` column in the SimplyModbus main window):
 
    +----+----+----+----+------+------+------+------+
    | XX | XX | XX | XX | LED3 | LED2 | LED1 | LED0 |
@@ -192,13 +238,13 @@ Switch to SimplyModbus main window. Click on ``RESTORE CFG`` and change to `($\\
 Switch OFF LED1 and LED3
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Switch OFF LED1 & LED3 using `Write Coil` command. In the SimplyModbus write window change `First Register = 2` and `# values to write = 1`. This prepares a `Write Single Coil` command to be issued to the Modbus slave to Write a coil (LED) at address indicated in `First Register` box. Click on ``SEND``. Notice how LED1 state toggles. Now, set `First Register = 4` and click on ``SEND``. Notice how LED3 state toggles.
+Switch OFF LED1 & LED3 using `Write Coil` command. In the SimplyModbus ``WRITE`` interface, change `First Register = 2`. This prepares a `Write Single Coil` command to be issued to the Modbus slave to Write a coil (LED) at address indicated in `First Register` box. Click on ``SEND``. Notice how LED1 state toggles. Now, set `First Register = 4` and click on ``SEND``. Notice how LED3 state toggles.
 
 
 Read LED status
 ~~~~~~~~~~~~~~~
 
-Switch to SimplyModbus main window. Click on ``SEND``. This time, please notice the result (shown in `results` column in the SimplyModbus main window) indicates that LED1 and LED3 are OFF. The LED states are arranged as following in the result:
+Switch to SimplyModbus main window. Click on ``SEND``. This time, please notice the result (shown in `results` column in the SimplyModbus main window) indicates that LED1 and LED3 are OFF.
 
 
 .. figure:: images/read_led_13.png
@@ -210,7 +256,23 @@ Switch to SimplyModbus main window. Click on ``SEND``. This time, please notice 
 Read Temperature
 ~~~~~~~~~~~~~~~~
 
-The temperature can be read by sending a 'Read Input Register' command. In the SimplyModbus main window, click on ``RESTORE CFG`` and change to `($\\app_modbus_rtu\\simplymodbus_config\\)`. Select the `read_ip_reg.csv` configuration file. This will load the READ_INPUT_REGISTER command in the SimplyModbus main window with `First Register = 1` and `No. of Registers = 1`. This prepares a `Read Input Register` command to be issued to the Modbus slave to Read input registers at address 0. In this demo, it reads the current room temperature as recorded by the sensor present on the XA-SK-GPIO sliceCARD. The result (shown in `results` column in the SimplyModbus main window) is a short integer representing the room temperature as responded by the Modbus slave.
+The temperature can be read by sending a 'Read Input Register' command. In the SimplyModbus main window change to below mentioned settings. This prepares a `Read Input Register` command to be issued to the Modbus slave to Read input registers at address 0. In this demo, it reads the current room temperature as recorded by the sensor present on the XA-SK-GPIO sliceCARD. The result (shown in `results` column in the SimplyModbus main window) is a short integer representing the room temperature as responded by the Modbus slave.
+
+   +---------------+------------+---------------------+------------------+
+   | Heading       | Value      | Heading             | Value            |
+   +===============+============+=====================+==================+
+   | **Mode**      | RTU        | **Slave ID**        | 10               |
+   +---------------+------------+---------------------+------------------+
+   | **COM Port**  | <>         | **First Register**  | 1                |
+   +---------------+------------+---------------------+------------------+
+   | **Baud**      | 9600       | **No. of Regs**     | 1                |
+   +---------------+------------+---------------------+------------------+
+   | **Data Bits** | 8          | **Function Code**   | 4                |
+   +---------------+------------+---------------------+------------------+
+   | **Stop Bits** | 1          | **Minus offset**    | 1                |
+   +---------------+------------+---------------------+------------------+
+   | **Parity**    | Even       | **Register Size**   | 16 bit registers |
+   +---------------+------------+---------------------+------------------+
 
 .. figure:: images/read_temp.png
    :align: center
@@ -222,7 +284,25 @@ The temperature can be read by sending a 'Read Input Register' command. In the S
 Read Button States - No Buttons pressed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To see if a button was pressed (and released) since last read, send a 'Read Discrete Input' command. Click on ``RESTORE CFG`` and change to `($\\app_modbus_rtu\\simplymodbus_config\\)`. Select the `read_dis_ip.csv` configuration file. This will load the READ_DISCRETE_INPUT command in the SimplyModbus main window with `First Coil = 1` and `No. of Coils = 2`. This prepares a `Read Discrete Input` command to be issued to the Modbus slave to Read input registers at addresses 0 through 1. In this demo, it reads button (SW1 & SW2) status on the XA-SK-GPIO sliceCARD. Address 0 is SW1 and Address 1 is SW2. The result (shown in `results` column in the SimplyModbus main window) is a byte of format:
+To see if a button was pressed (and released) since last read, send a 'Read Discrete Input' command. Change the main window settings to below mentioned values. This prepares a `Read Discrete Input` command to be issued to the Modbus slave to Read input registers at addresses 0 through 1. In this demo, it reads button (SW1 & SW2) status on the XA-SK-GPIO sliceCARD. Address 0 is SW1 and Address 1 is SW2.
+
+   +---------------+------------+---------------------+--------------+
+   | Heading       | Value      | Heading             | Value        |
+   +===============+============+=====================+==============+
+   | **Mode**      | RTU        | **Slave ID**        | 10           |
+   +---------------+------------+---------------------+--------------+
+   | **COM Port**  | <>         | **First Register**  | 1            |
+   +---------------+------------+---------------------+--------------+
+   | **Baud**      | 9600       | **No. of Regs**     | 2            |
+   +---------------+------------+---------------------+--------------+
+   | **Data Bits** | 8          | **Function Code**   | 2            |
+   +---------------+------------+---------------------+--------------+
+   | **Stop Bits** | 1          | **Minus offset**    | 1            |
+   +---------------+------------+---------------------+--------------+
+   | **Parity**    | Even       | **Register Size**   | 1 bit coils  |
+   +---------------+------------+---------------------+--------------+
+
+The result (shown in `results` column in the SimplyModbus main window) is a byte of format:
 
    +----+----+----+----+----+----+-----+-----+
    | XX | XX | XX | XX | XX | XX | SW2 | SW1 |

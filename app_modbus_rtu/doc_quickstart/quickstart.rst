@@ -197,16 +197,16 @@ In the ``WRITE`` interface window, change to the below mentioned settings. This 
 Read LED status
 ~~~~~~~~~~~~~~~
 
-Switch to SimplyModbus main window and change to below mentioned settings. This prepares a `Read Coil` command to be issued to the Modbus slave to read coils from addresses 0 through 3. In this demo, it reads the status of 4 GPIO LEDs on XA-SK-GPIO sliceCARD. The first LED is LED0 on the XA-SK-GPIO slice and the fourth LED is LED3 on XA-SK-GPIO slice.
+Switch to SimplyModbus main window and change to below mentioned settings and click ``SEND``. This prepares a `Read Coil` command to be issued to the Modbus slave to read coils from addresses 0 through 3. In this demo, it reads the status of 4 GPIO LEDs on XA-SK-GPIO sliceCARD. The first LED is LED0 on the XA-SK-GPIO slice and the fourth LED is LED3 on XA-SK-GPIO slice.
 
    +---------------+------------+---------------------+--------------+
    | Heading       | Value      | Heading             | Value        |
    +===============+============+=====================+==============+
    | **Mode**      | RTU        | **Slave ID**        | 10           |
    +---------------+------------+---------------------+--------------+
-   | **COM Port**  | <>         | **First Register**  | 1            |
+   | **COM Port**  | <>         | **First Coil**      | 1            |
    +---------------+------------+---------------------+--------------+
-   | **Baud**      | 9600       | **No. of Regs**     | 4            |
+   | **Baud**      | 9600       | **No. of Coils**    | 4            |
    +---------------+------------+---------------------+--------------+
    | **Data Bits** | 8          | **Function Code**   | 1            |
    +---------------+------------+---------------------+--------------+
@@ -256,7 +256,7 @@ Switch to SimplyModbus main window. Click on ``SEND``. This time, please notice 
 Read Temperature
 ~~~~~~~~~~~~~~~~
 
-The temperature can be read by sending a 'Read Input Register' command. In the SimplyModbus main window change to below mentioned settings. This prepares a `Read Input Register` command to be issued to the Modbus slave to Read input registers at address 0. In this demo, it reads the current room temperature as recorded by the sensor present on the XA-SK-GPIO sliceCARD. The result (shown in `results` column in the SimplyModbus main window) is a short integer representing the room temperature as responded by the Modbus slave.
+The temperature can be read by sending a 'Read Input Register' command. In the SimplyModbus main window change to below mentioned settings and click on ``SEND``. This prepares a `Read Input Register` command to be issued to the Modbus slave to Read input registers at address 0. In this demo, it reads the current room temperature as recorded by the sensor present on the XA-SK-GPIO sliceCARD. The result (shown in `results` column in the SimplyModbus main window) is a short integer representing the room temperature as responded by the Modbus slave.
 
    +---------------+------------+---------------------+------------------+
    | Heading       | Value      | Heading             | Value            |
@@ -284,7 +284,7 @@ The temperature can be read by sending a 'Read Input Register' command. In the S
 Read Button States - No Buttons pressed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To see if a button was pressed (and released) since last read, send a 'Read Discrete Input' command. Change the main window settings to below mentioned values. This prepares a `Read Discrete Input` command to be issued to the Modbus slave to Read input registers at addresses 0 through 1. In this demo, it reads button (SW1 & SW2) status on the XA-SK-GPIO sliceCARD. Address 0 is SW1 and Address 1 is SW2.
+To see if a button was pressed (and released) since last read, send a 'Read Discrete Input' command. Change the main window settings to below mentioned values and click on ``SEND``. This prepares a `Read Discrete Input` command to be issued to the Modbus slave to Read input registers at addresses 0 through 1. In this demo, it reads button (SW1 & SW2) status on the XA-SK-GPIO sliceCARD. Address 0 is SW1 and Address 1 is SW2.
 
    +---------------+------------+---------------------+--------------+
    | Heading       | Value      | Heading             | Value        |

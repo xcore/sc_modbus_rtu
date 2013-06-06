@@ -90,7 +90,7 @@ At this point, please note the COM port number (here, COM14). This will be used 
 Modbus Master Emulator
 ----------------------
 
-A Modbus Master application such as Simply Modbus RTU PC application is available from http://www.simplymodbus.ca/RTUmaster.htm. Download the installer and install the application on your PC by running it. You can open the Modbus master emulator using Start -> All Programs -> Simply Modbus -> Simply Modbus.
+A Modbus Master application such as Simply Modbus RTU PC application is available from www.simplymodbus.ca/SimplyModbusMaster6.3.8.zip. Download and extract the above file into a folder. Open this folder and run ``Simply Modbus Master 6.3.8.exe``.
 
 Please see the online manual for SimplyModbus RTU here: http://www.simplymodbus.ca/manual.htm for help on creating Modbus commands.
 

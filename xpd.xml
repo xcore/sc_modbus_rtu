@@ -26,7 +26,7 @@
     </dependency>
     <description>Modbus RTU component</description>
     <docdir>module_modbus_rtu/doc</docdir>
-    <docdir>app_modbus_rtu/doc_quickstart</docdir>
+    <exclude_dir>app_modbus_rtu/doc_quickstart</exclude_dir>
     <location>https://github.com/xcore/sc_modbus_rtu.git</location>
     <name>sc_modbus_rtu</name>
     <maintainer>vinithmundhra</maintainer>

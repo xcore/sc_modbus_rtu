@@ -1,8 +1,8 @@
-Modbus RTU
-==========
+Modbus RTU (Slave) Server Component
+===================================
 
-:scope: General Use
-:description: Modbus RTU Server component
+:scope: Early Development
+:description: Modbus RTU Server (Slave) component
 :keywords: ModbusRTU
 :boards: XA-SK-ISBUS
 
@@ -22,7 +22,7 @@ Implements following Modbus commands received over RS485:
 - Get Comm Event Counter
 - Write Multiple Coils
 
-Description
-===========
+Evaluation
+----------
 
-The Modbus RTU component internally uses RS485 component to receive Modbus master commands over RS485 interface. Based on the commands issued by the Modbus Master, the Modbus RTU component requests appropriate data from the user application. It then sends this data back to the Modbus Master and waits for next command.
+Due to the wide range of Modbus master application software on the market and the normally propriatory nature of such software a stand alone demonstration of this component is not available directly in xSOFTip. Instructions for conducting a basic evaluation of this component making use of a free but functionally restricted demo version of the SimplyModbus master software (from http://www.simplymodbus.ca) can be obtained by contacting your XMOS sales representative.

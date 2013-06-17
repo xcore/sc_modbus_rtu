@@ -7,7 +7,7 @@ Modbus RTU (Slave) Server Component
 :boards: XA-SK-ISBUS
 
 Key Features
-============
+------------
 
 Implements following Modbus commands received over RS485:
 

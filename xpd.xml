@@ -1,17 +1,17 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component name = "module_modbus_rtu" type = "component" buildresults_path = "module_modbus_rtu/.module_modbus_rtu.buildinfo" scope = "General Use" path = "module_modbus_rtu" metainfo_path = "module_modbus_rtu/module_modbus_rtu.metainfo" local = "false" id = "module_modbus_rtu" description = "Modbus RTU Server component">
-            <board>XA-SK-ISBUS</board>
-            <componentDependency>module_rs485</componentDependency>
-            <keyword>ModbusRTU</keyword>
-        </component>
-        <component description = "Demonstrates Modbus slave with GPIO slice card" type = "demoCode" scope = "Example" path = "app_modbus_rtu" local = "false" id = "app_modbus_rtu" name = "app_modbus_rtu">
+        <component description = "Demonstrates Modbus slave with GPIO sliceCARD" type = "demoCode" scope = "Example" path = "app_modbus_rtu" local = "false" id = "app_modbus_rtu" name = "app_modbus_rtu">
             <board>XA-SK-ISBUS</board>
             <board>XA-SK-GPIO</board>
             <componentDependency>module_rs485</componentDependency>
             <componentDependency>module_modbus_rtu</componentDependency>
             <componentDependency>module_i2c_master</componentDependency>
+            <keyword>ModbusRTU</keyword>
+        </component>
+        <component name = "module_modbus_rtu" type = "component" buildresults_path = "module_modbus_rtu/.module_modbus_rtu.buildinfo" scope = "Early Development" path = "module_modbus_rtu" metainfo_path = "module_modbus_rtu/module_modbus_rtu.metainfo" local = "false" id = "module_modbus_rtu" description = "Modbus RTU Server (Slave) component">
+            <board>XA-SK-ISBUS</board>
+            <componentDependency>module_rs485</componentDependency>
             <keyword>ModbusRTU</keyword>
         </component>
     </components>
@@ -30,8 +30,10 @@
     <location>https://github.com/xcore/sc_modbus_rtu.git</location>
     <name>sc_modbus_rtu</name>
     <maintainer>vinithmundhra</maintainer>
+    <partnumber>XM-003115-DH</partnumber>
     <release></release>
     <release></release>
+    <subpartnumber>XM-003116-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sc_modbus_rtu.git</xcore_repo>
     <xpd_version>1.0</xpd_version>

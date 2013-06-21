@@ -18,26 +18,6 @@
 #include "rs485.h"
 #include "mb_codes.h"
 
-/*---------------------------------------------------------------------------
- constants
- ---------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------
- typedefs
- ---------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------
- global variables
- ---------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------
- extern variables
- ---------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------
- prototypes
- ---------------------------------------------------------------------------*/
-
 /*==========================================================================*/
 /** Modbus RTU Server. This Modbus Slave task must be called from the main
  *  user application. It internally instantiates RS485 component to
@@ -48,11 +28,13 @@
  *  the following format:
  *
  *  It sends:
+ *
  *  unsigned char: Modbus command
  *  unsigned short: Address to read/write
  *  unsigned short: Value to write (sent always. on read command, this is 0)
  *
  *  And expects:
+ *
  *  unsigned short: value (for Read) or status (for write)
  *
  *  After receiving request data from user application, it sends the response

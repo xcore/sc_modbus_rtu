@@ -1,6 +1,7 @@
 Modbus RTU Components Change Log
 ================================
 
-0.0.1
+1.0.0
 -----
-- Pilot
+
+Initial release of module

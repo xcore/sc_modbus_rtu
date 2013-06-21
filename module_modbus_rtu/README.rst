@@ -11,16 +11,16 @@ Key Features
 
 Implements following Modbus commands received over RS485:
 
-- Read Coils
-- Read Discrete Inputs
-- Read Holding Registers
-- Read Input Register
-- Write Single Coil
-- Write Single Register
-- Read Exception Status
-- Diagnostics
-- Get Comm Event Counter
-- Write Multiple Coils
+   * Read Coils
+   * Read Discrete Inputs
+   * Read Holding Registers
+   * Read Input Register
+   * Write Single Coil
+   * Write Single Register
+   * Read Exception Status
+   * Diagnostics
+   * Get Comm Event Counter
+   * Write Multiple Coils
 
 Evaluation
 ----------

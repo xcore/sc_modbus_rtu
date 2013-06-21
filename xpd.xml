@@ -31,6 +31,7 @@
     <name>sc_modbus_rtu</name>
     <maintainer>vinithmundhra</maintainer>
     <partnumber>XM-003115-DH</partnumber>
+    <release parenthash = "6800762c34c49530346acb99abe1e248293973ef" version = "0.0.1beta0"></release>
     <subpartnumber>XM-003116-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sc_modbus_rtu.git</xcore_repo>

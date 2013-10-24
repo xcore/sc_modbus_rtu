@@ -96,7 +96,7 @@ static unsigned char get_byte_count(unsigned short qty)
  *  And expects:
  *  unsigned short: value (for Read) or status (for write)
  *
- *  \param c_modbus   Channel connecting to top leel application
+ *  \param c_modbus   Channel connecting to top-level application
  *  \param fn_code    Modbus Function code
  *  \param address    Device address
  *  \param value      Value

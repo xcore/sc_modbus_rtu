@@ -26,7 +26,7 @@
 /** \enum   modbus_rtu_cmd_t_
  *  \brief  Modbus commands supported.
  *
- *  This Modbus RTU slave implmentation can service the following Modbus master
+ *  This Modbus RTU slave implementation can service the following Modbus master
  *  commands (Function Codes). Any other command by the Modbus master will
  *  result in an exception response (illegal function).
  */
@@ -87,7 +87,7 @@ typedef enum modbus_rtu_diag_subfn_t_
 {
   MB_DIAG_QUERY_DATA = 0,               /**< Return query data */
   MB_DIAG_FORCE_LISTEN_ONLY = 4,        /**< Force listen only mode */
-  MB_DIAG_CLEAR = 10,                   /**< Clear disgnostic counters */
+  MB_DIAG_CLEAR = 10,                   /**< Clear diagnostic counters */
   MB_DIAG_BUS_MSG_COUNT = 11,           /**< Return bus message count */
   MB_DIAG_BUS_COMM_ERROR_COUNT = 12,    /**< Return communication error count */
   MB_DIAG_BUS_EXCEPTION_COUNT = 13,     /**< Return exception response count */

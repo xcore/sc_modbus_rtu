@@ -40,7 +40,7 @@
  *  After receiving request data from user application, it sends the response
  *  back to Modbus master over RS485 interface.
  *
- *  \param c_modbus       Modbus channel to top level application
+ *  \param c_modbus       Modbus channel to top-level application
  *  \param rs485_if       RS485 interface ports
  *  \param slave_address  Modbus slave address
  *  \param baud           Baud rate

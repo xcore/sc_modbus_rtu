@@ -1,14 +1,13 @@
-.. _modbus_rtu_api:
-
 API
 ====
+.. _modbus_rtu_api:
 
 Server functions
 ----------------
 
 .. doxygenfunction:: modbus_rtu_server
 
-Modbus commands & Status
+Modbus commands & status
 ------------------------
 
 .. doxygenenum:: modbus_rtu_cmd_t_

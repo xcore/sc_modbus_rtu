@@ -156,15 +156,15 @@
 								<option id = "com.xmos.xc.compiler.option.include.paths.31551395" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.xc.compiler.input.2291769" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
@@ -276,15 +276,15 @@
 								<option id = "com.xmos.c.compiler.option.include.paths.33043296" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.c.compiler.input.c.27315011" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
@@ -402,15 +402,15 @@
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1/xcore-xmos-elf&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.cxx.compiler.input.cpp.819358" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
@@ -664,15 +664,15 @@
 								<option id = "com.xmos.xc.compiler.option.include.paths.44031849" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.xc.compiler.input.84389501" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
@@ -784,15 +784,15 @@
 								<option id = "com.xmos.c.compiler.option.include.paths.34191765" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.c.compiler.input.c.92385219" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
@@ -910,15 +910,15 @@
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1/xcore-xmos-elf&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_modbus_rtu/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_modbus_rtu/simplymodbus_config}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_rs485}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.cxx.compiler.input.cpp.27846525" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>

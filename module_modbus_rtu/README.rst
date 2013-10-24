@@ -25,4 +25,6 @@ Implements following Modbus commands received over RS485:
 Evaluation
 ----------
 
-Due to the wide range of Modbus master application software on the market and the normally propriatory nature of such software a stand alone demonstration of this component is not available directly in xSOFTip. Instructions for conducting a basic evaluation of this component making use of a free but functionally restricted demo version of the SimplyModbus master software (from http://www.simplymodbus.ca) can be obtained by contacting your XMOS sales representative.
+Due to the wide range of Modbus master application software on the market and the normally proprietary nature of such software a stand-alone demonstration of this component is not available directly in xSOFTip. Instructions for conducting a basic evaluation of this component making use of a free but functionally restricted demo version of the SimplyModbus master software (from Simplymodbus_) can be obtained by contacting your XMOS sales representative.
+
+.. _Simplymodbus: http://www.simplymodbus.ca

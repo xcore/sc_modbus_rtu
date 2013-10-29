@@ -1,9 +1,10 @@
 Modbus RTU Repository
 .....................
 
-:Latest release: 1.0.0rc0
-:Maintainer: XMOS
+:Latest release: 1.0.1beta0
+:Maintainer: vinithmundhra
 :Description: Modbus RTU component
+
 
 Firmware Overview
 =================
@@ -27,6 +28,6 @@ Issues may be submitted via the Issues tab in this github repository. Response t
 Required software (dependencies)
 ================================
 
-  * sc_uart (https://github.com/xcore/sc_uart.git)
   * sc_i2c (https://github.com/xcore/sc_i2c.git)
+  * sc_uart (https://github.com/xcore/sc_uart.git)
 

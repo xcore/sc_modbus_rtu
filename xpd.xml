@@ -4,9 +4,9 @@
         <component description = "Demonstrates Modbus slave with GPIO sliceCARD" type = "demoCode" scope = "Example" path = "app_modbus_rtu" local = "false" id = "app_modbus_rtu" name = "app_modbus_rtu">
             <board>XA-SK-ISBUS</board>
             <board>XA-SK-GPIO</board>
-            <componentDependency repo = "git://github.com/xcore/sc_uart.git" version = "3.0.0">module_rs485</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_i2c" version = "2.2.0">module_i2c_master</componentDependency>
             <componentDependency version = "1.0.1">module_modbus_rtu</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_uart.git" version = "3.0.0">module_rs485</componentDependency>
             <keyword>ModbusRTU</keyword>
         </component>
         <component name = "Modbus RTU (Slave) Server Component" type = "component" buildresults_path = "module_modbus_rtu/.module_modbus_rtu.buildinfo" scope = "Early Development" path = "module_modbus_rtu" metainfo_path = "module_modbus_rtu/module_modbus_rtu.metainfo" local = "false" id = "module_modbus_rtu" description = "Modbus RTU Server (Slave) component">
@@ -16,12 +16,14 @@
         </component>
     </components>
     <dependency repo = "sc_uart">
-        <githash>52a20d7fa4a29450089f1220813008b99b25c168</githash>
+        <githash>9a5e32caa657597ef7daf52895485a96591e1137</githash>
         <uri>https://github.com/xcore/sc_uart.git</uri>
+        <version>3.0.0alpha3</version>
     </dependency>
     <dependency repo = "sc_i2c">
-        <githash>09a3ca1367ad8771f09fc944dafe630d0cdaf931</githash>
+        <githash>53349e8bd6493701b1ec462187b14c9e74bdc6bd</githash>
         <uri>https://github.com/xcore/sc_i2c.git</uri>
+        <version>2.2.0rc0</version>
     </dependency>
     <description>Modbus RTU component</description>
     <docdir>module_modbus_rtu/doc</docdir>
@@ -33,7 +35,8 @@
     <release parenthash = "6800762c34c49530346acb99abe1e248293973ef" version = "0.0.1beta0" githash = "165ce25e6311a5c292dc9e6b6c9f82d80062ee07"></release>
     <release parenthash = "16427abbd63da4fd60cd97ef246cea4336da8d4f" version = "1.0.0rc0" githash = "b694406c36e1814e75cf236bac38a7a4186d97cd"></release>
     <release parenthash = "261aa08d068af80564607f6511806ccb8a582c2b" version = "1.0.1beta0" githash = "de7126ef63c7c5108131451ea118214cae66d26f"></release>
-    <release parenthash = "de7126ef63c7c5108131451ea118214cae66d26f" version = "1.0.1beta1"></release>
+    <release parenthash = "de7126ef63c7c5108131451ea118214cae66d26f" version = "1.0.1beta1" githash = "9f44295fad4a1d91f88b7062578cc53a53cc7252"></release>
+    <release parenthash = "9f44295fad4a1d91f88b7062578cc53a53cc7252" version = "1.0.1beta2"></release>
     <subpartnumber>XM-003116-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>

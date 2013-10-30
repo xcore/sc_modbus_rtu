@@ -1,7 +1,7 @@
 Modbus RTU Repository
 .....................
 
-:Latest release: 1.0.1beta1
+:Latest release: 1.0.1beta2
 :Maintainer: vinithmundhra
 :Description: Modbus RTU component
 
@@ -30,4 +30,5 @@ Required software (dependencies)
 
   * sc_i2c (https://github.com/xcore/sc_i2c.git)
   * sc_uart (https://github.com/xcore/sc_uart.git)
+  * sc_util (git@github.com:xcore/sc_util)
 

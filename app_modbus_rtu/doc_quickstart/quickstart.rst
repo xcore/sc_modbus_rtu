@@ -12,7 +12,7 @@ Hardware Setup
 
 The Modbus RTU Demo Application requires the following items:
 
-- XP-SKC-L2 sliceKIT Core board marked with edge connectors: ``SQUARE``, ``CIRCLE``, ``TRIANGLE`` and ``STAR``.
+- XP-SKC-L16 sliceKIT Core board marked with edge connectors: ``SQUARE``, ``CIRCLE``, ``TRIANGLE`` and ``STAR``.
 - XA-SK-ISBUS Ethernet sliceCARD
 - XA-SK-GPIO GPIO sliceCARD
 - XTAG2 and XTAG Adapter
@@ -28,8 +28,8 @@ To setup the system:
 
 #. Connect the XTAG Adapter to sliceKIT Core board, and connect XTAG-2 to the adapter.
 #. Connect the XTAG-2 to host PC. Note that the USB cable is not provided with the sliceKIT starter kit.
-#. Connect XA-SK-GPIO sliceCARD to the XP-SKC-L2 sliceKIT Core board using the connector marked with the ``SQUARE``.
-#. Connect XA-SK-ISBUS sliceCARD to the XP-SKC-L2 sliceKIT Core board using the connector marked with the ``TRIANGLE``.
+#. Connect XA-SK-GPIO sliceCARD to the XP-SKC-L16 sliceKIT Core board using the connector marked with the ``SQUARE``.
+#. Connect XA-SK-ISBUS sliceCARD to the XP-SKC-L16 sliceKIT Core board using the connector marked with the ``TRIANGLE``.
 #. Connect the **USB side** of *USB to RS232 converter* to a USB slot in your PC.
 #. Connect the **RS232 side** of *USB to RS232 converter* to **RS232 side** of *RS232 to RS485 converter*.
 #. Connect the following pins present on the **RS485 side** of *RS232 to RS485 converter* to XA-SK-ISBUS sliceCARD:

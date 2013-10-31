@@ -30,5 +30,5 @@ Required software (dependencies)
 
   * sc_i2c (https://github.com/xcore/sc_i2c.git)
   * sc_uart (https://github.com/xcore/sc_uart.git)
-  * sc_util (git@github.com:xcore/sc_util)
+  * sc_util (https://github.com/xcore/sc_util.git)
 

@@ -5,8 +5,8 @@
             <board>XA-SK-ISBUS</board>
             <board>XA-SK-GPIO</board>
             <componentDependency repo = "git://github.com/xcore/sc_i2c" version = "2.2.0">module_i2c_master</componentDependency>
-            <componentDependency version = "1.0.1">module_modbus_rtu</componentDependency>
             <componentDependency repo = "git://github.com/xcore/sc_uart.git" version = "3.0.0">module_rs485</componentDependency>
+            <componentDependency version = "1.0.1">module_modbus_rtu</componentDependency>
             <keyword>ModbusRTU</keyword>
         </component>
         <component name = "Modbus RTU (Slave) Server Component" type = "component" buildresults_path = "module_modbus_rtu/.module_modbus_rtu.buildinfo" scope = "Early Development" path = "module_modbus_rtu" metainfo_path = "module_modbus_rtu/module_modbus_rtu.metainfo" local = "false" id = "module_modbus_rtu" description = "Modbus RTU Server (Slave) component">
@@ -36,7 +36,8 @@
     <release parenthash = "16427abbd63da4fd60cd97ef246cea4336da8d4f" version = "1.0.0rc0" githash = "b694406c36e1814e75cf236bac38a7a4186d97cd"></release>
     <release parenthash = "261aa08d068af80564607f6511806ccb8a582c2b" version = "1.0.1beta0" githash = "de7126ef63c7c5108131451ea118214cae66d26f"></release>
     <release parenthash = "de7126ef63c7c5108131451ea118214cae66d26f" version = "1.0.1beta1" githash = "9f44295fad4a1d91f88b7062578cc53a53cc7252"></release>
-    <release parenthash = "9f44295fad4a1d91f88b7062578cc53a53cc7252" version = "1.0.1beta2"></release>
+    <release parenthash = "9f44295fad4a1d91f88b7062578cc53a53cc7252" version = "1.0.1beta2" githash = "8873ba06865f0c6c990a763a3e83d6d8ab055d0f"></release>
+    <release parenthash = "30f0f5df764c2c936f27ff59737fc45829f48c5b" version = "1.0.1beta3"></release>
     <subpartnumber>XM-003116-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>

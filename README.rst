@@ -1,7 +1,7 @@
 Modbus RTU Repository
 .....................
 
-:Latest release: 1.0.1beta3
+:Latest release: 1.0.1beta4
 :Maintainer: vinithmundhra
 :Description: Modbus RTU component
 

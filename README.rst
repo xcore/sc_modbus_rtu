@@ -1,8 +1,8 @@
 Modbus RTU Repository
 .....................
 
-:Latest release: 1.0.1beta4
-:Maintainer: XMOS
+:Latest release: 1.0.1beta5
+:Maintainer: vinithmundhra
 :Description: Modbus RTU component
 
 
@@ -32,5 +32,4 @@ Required software (dependencies)
 
   * sc_i2c (https://github.com/xcore/sc_i2c.git)
   * sc_uart (https://github.com/xcore/sc_uart.git)
-  * sc_util (https://github.com/xcore/sc_util)
 

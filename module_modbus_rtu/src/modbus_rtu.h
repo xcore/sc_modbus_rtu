@@ -1,20 +1,7 @@
-// Copyright (c) 2011, XMOS Ltd., All rights reserved
-// This software is freely distributable under a derivative of the
-// University of Illinois/NCSA Open Source License posted in
-// LICENSE.txt and at <http://github.xcore.com/>
-
-/*===========================================================================
- Info
- ----
-
- ===========================================================================*/
-
 #ifndef __modbus_rtu_h__
 #define __modbus_rtu_h__
 
-/*---------------------------------------------------------------------------
- nested include files
- ---------------------------------------------------------------------------*/
+
 #include "rs485.h"
 #include "mb_codes.h"
 
@@ -54,4 +41,3 @@ void modbus_rtu_server(chanend c_modbus,
                        rs485_parity_t parity);
 
 #endif // __modbus_rtu_h__
-/*==========================================================================*/

@@ -1,30 +1,11 @@
-// Copyright (c) 2011, XMOS Ltd., All rights reserved
-// This software is freely distributable under a derivative of the
-// University of Illinois/NCSA Open Source License posted in
-// LICENSE.txt and at <http://github.xcore.com/>
-
-/*===========================================================================
- Info
- ----
-
- ===========================================================================*/
-
 #ifndef __mb_function_h__
 #define __mb_function_h__
 
-/*---------------------------------------------------------------------------
- nested include files
- ---------------------------------------------------------------------------*/
 #include <xccompat.h>
 #include "mb_codes.h"
 
-/*---------------------------------------------------------------------------
- constants
- ---------------------------------------------------------------------------*/
 
-/*---------------------------------------------------------------------------
- typedefs
- ---------------------------------------------------------------------------*/
+
 /** \struct modbus_rtu_diag_counters_t
  *  \brief  Modbus Serial diagnostic counters
  *
@@ -44,17 +25,6 @@ typedef struct modbus_rtu_diag_counters_t_
   unsigned short no_response;     /**< No Response Count (Sub Fn: 0x0F)*/
 }modbus_rtu_diag_counters_t;
 
-/*---------------------------------------------------------------------------
- global variables
- ---------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------
- extern variables
- ---------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------------
- prototypes
- ---------------------------------------------------------------------------*/
 
 /*==========================================================================*/
 /** Read 1 bit device. This may be a coil or a discrete input.
@@ -142,4 +112,3 @@ modbus_rtu_exception_t mb_comm_event_counter(unsigned char msg[], int &len);
 void mb_reset_diagnostic_counters();
 
 #endif // __mb_function_h__
-/*==========================================================================*/

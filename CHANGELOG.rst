@@ -1,4 +1,4 @@
-Modbus RTU Components Change Log
+Modbus RTU components change log
 ================================
 
 1.0.1

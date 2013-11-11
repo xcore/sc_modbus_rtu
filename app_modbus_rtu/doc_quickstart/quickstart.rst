@@ -1,4 +1,4 @@
-Modbus RTU Demo Quickstart Guide
+Modbus RTU demo quickstart guide
 ================================
 
 This simple demonstration of xTIMEcomposer Studio functionality that uses the ``XA-SK-ISBUS`` and ``XA-SK-GPIO`` sliceCARD together with the xSOFTip ``module_modbus_rtu`` and ``module_i2c_master`` to demonstrate how to receive commands from a Modbus Master over RS485 bus and service them to:
@@ -7,13 +7,13 @@ This simple demonstration of xTIMEcomposer Studio functionality that uses the ``
 - Read the room temperature via the on-board ADC
 - Display GPIO sliceCARD button presses
 
-Hardware Setup
+Hardware setup
 ++++++++++++++
 
 The Modbus RTU Demo Application requires the following items:
 
 - XP-SKC-L16 sliceKIT Core board marked with edge connectors: ``SQUARE``, ``CIRCLE``, ``TRIANGLE`` and ``STAR``.
-- XA-SK-ISBUS Ethernet sliceCARD
+- XA-SK-ISBUS sliceCARD
 - XA-SK-GPIO GPIO sliceCARD
 - XTAG2 and XTAG Adapter
 - Ethernet Cable and
@@ -55,7 +55,7 @@ To setup the system:
 
    Hardware Setup for a Modbus RTU Demo
 
-Host Computer Setup
+Host computer setup
 +++++++++++++++++++
 
 COM port setup on PC
@@ -87,7 +87,7 @@ Change to *Port Settings* tab and set:
 
 At this point, please note the COM port number (here, COM14). This will be used to set configurations in the Modbus PC application. Click *OK* to close the window.
 
-Modbus Master Emulator
+Modbus master emulator
 ----------------------
 
 A Modbus Master application such as Simply Modbus RTU PC application is available from www.simplymodbus.ca/SimplyModbusMaster6.3.8.zip. Download and extract the above file into a folder. Open this folder and run ``Simply Modbus Master 6.3.8.exe``.
@@ -96,7 +96,7 @@ Please see the online manual for SimplyModbus RTU here: http://www.simplymodbus.
 
 The commands could also be stored (saved) and restored to/from the PC memory for later use. These saved files may also be called as configurations. The folder ($\\app_modbus_rtu\\simplymodbus_config\\) contains sample Simply Modbus TCP specific configuration files to perform Read / Write operations. These files can be loaded by clicking on ``RESTORE CFG`` button from the Simply Modbus PC application.
 
-Import and Build the Application
+Import and build the application
 ++++++++++++++++++++++++++++++++
 
 #. Open xTIMEcomposer and check that it is operating in online mode. Open the edit perspective (Window->Open Perspective->XMOS Edit).
@@ -113,7 +113,7 @@ For help in using xTIMEcomposer, try the xTIMEcomposer tutorial, which you can f
 
 Note that the Developer Column in the xTIMEcomposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the module_modbus_rtu component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this quick start guide within the Developer Column.
 
-Run the Application
+Run the application
 +++++++++++++++++++
 
 Now that the application has been compiled, the next step is to run it on the sliceKIT Core Board using the tools to load the application over JTAG (via the XTAG2 and XTAG Adapter card) into the xCORE multicore microcontroller.
@@ -122,7 +122,7 @@ Now that the application has been compiled, the next step is to run it on the sl
 - Click on the ``Run`` icon (the white arrow in the green circle).
 - At the ``Select Device`` dialog select ``XMOS XTAG-2 connect to L1[0..1]`` and click ``OK``.
 
-The Demo
+The demo
 --------
 
 This demo issues commands to read: coils, input register and discrete inputs and write: coils. Using the XA-SK-GPIO sliceCARD, the coils, etc... are mapped as follows:
@@ -352,7 +352,7 @@ Another example where the number of coils in 'Read Coil' (function code '1') com
    Illegal Data Value Screenshot
 
 
-Next Steps
+Next steps
 ++++++++++
 
 - Try connecting the coils and registers in the app code to show other values. For example, a Read register command from Modbus Master should always read a specific address from the memory.

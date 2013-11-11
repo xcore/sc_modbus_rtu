@@ -7,7 +7,7 @@
  Info
  ----
  This simple demonstration uses XA-SK-ISBUS and XA-SK-GPIO Slice Cards that
- plugs into the Slicekit Core board (XP-SKC-L2). It uses xSOFTip(s)
+ plugs into the sliceKIT Core board (XP-SKC-L2). It uses xSOFTip(s)
  ``module_modbus_rtu`` and ``module_i2c_master`` to receive commands from a
  Modbus Master over RS485 and service them to:
 
@@ -155,7 +155,6 @@ static int read_temperature(r_i2c &p_i2c)
 static unsigned short read_coil(unsigned short address)
 {
   unsigned char led_status = 0;
-  unsigned char tmp;
 
   if(address > 3) { return MODBUS_READ_1BIT_ERROR; }
 
@@ -209,7 +208,7 @@ static unsigned short read_discrete_input(unsigned short address)
 }
 
 /*==========================================================================*/
-/** Read Holding Register values. Not implemented in this app.
+/** Read Holding Register values. Not implemented in this application.
  *  All addresses return as device failures (no Holding Register at such
  *  addresses)
  *  Device failure return value for Holding register = MODBUS_READ_16BIT_ERROR
@@ -288,7 +287,7 @@ static unsigned short write_single_coil(unsigned short address,
 }
 
 /*==========================================================================*/
-/** Write to Register. Not implemented in this app.
+/** Write to Register. Not implemented in this application.
  *  All addresses return as device failures (no Register at such addresses)
  *  Device failure return value for Write register = MODBUS_WRITE_ERROR
  *  (present in mb_codes.h)

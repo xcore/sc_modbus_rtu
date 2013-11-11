@@ -312,7 +312,6 @@ modbus_rtu_exception_t mb_write_multiple_coils(chanend c_modbus,
                                                int &len)
 {
   unsigned short address, end_address, quantity;
-  unsigned char byte_count;
 
   address = (unsigned short)(msg[MBRTU_DATA_OFF] << 8u);
   address |= (unsigned short)(msg[MBRTU_DATA_OFF + 1]);

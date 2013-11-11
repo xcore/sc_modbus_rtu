@@ -26,6 +26,7 @@
         <version>2.2.1rc0</version>
     </dependency>
     <description>Modbus RTU component</description>
+    <docdir>app_modbus_rtu/doc_quickstart</docdir>
     <docdir>module_modbus_rtu/doc</docdir>
     <exclude_dir>app_modbus_rtu/doc_quickstart</exclude_dir>
     <location>https://github.com/xcore/sc_modbus_rtu.git</location>

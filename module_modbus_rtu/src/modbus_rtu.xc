@@ -17,7 +17,6 @@
 #include "mb_proto.h"
 #include "mb_function.h"
 #include "crc16.h"
-
 /*---------------------------------------------------------------------------
  constants
  ---------------------------------------------------------------------------*/
@@ -63,8 +62,6 @@ static void mbrtu_event_handler(chanend c_modbus,
   int length;
   modbus_rtu_exception_t exception;
   unsigned char req_slave_address;
-  timer t;
-  unsigned time;
 
   mb_reset_diagnostic_counters();
 
